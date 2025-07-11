@@ -1,0 +1,11 @@
+apiVersion: kro.run/v1alpha1
+kind: EKSCluster
+metadata:
+  name: test-secrets-external-operator
+spec:
+  name: test-secrets-external-operator
+  vpcCIDR: "10.10.0.0/16"
+  subnetACIDR: "10.10.0.0/18"
+  subnetBCIDR: "10.10.64.0/18"
+  version: "1.33"
+  adminARN: "arn:aws:iam::279606005479:user/csepulveda"
