@@ -304,24 +304,24 @@ spec:
           labels:
             argocd.argoproj.io/secret-type: cluster
         type: Opaque
-        # stringData:
-        #   name: ${schema.spec.name}
-        #   server: ${cluster.status.endpoint}
-        #   config: |
-        #     {
-        #       "execProviderConfig": {
-        #         "apiVersion": "client.authentication.k8s.io/v1beta1",
-        #         "command": "argocd-k8s-auth",
-        #         "args": [
-        #           "aws", "eks", "token",
-        #           "--cluster-name", "${schema.spec.name}"
-        #         ]
-        #       },
-        #       "tlsClientConfig": {
-        #         "insecure": false,
-        #         "caData": "${cluster.status.certificateAuthority.data}"
-        #       }
-        #     }
+        stringData:
+          name: ${schema.spec.name}
+          server: ${cluster.status.endpoint}
+          config: |
+            {
+              "execProviderConfig": {
+                "apiVersion": "client.authentication.k8s.io/v1beta1",
+                "command": "argocd-k8s-auth",
+                "args": [
+                  "aws", "eks", "token",
+                  "--cluster-name", "${schema.spec.name}"
+                ]
+              },
+              "tlsClientConfig": {
+                "insecure": false,
+                "caData": "${cluster.status.certificateAuthority.data}"
+              }
+            }
     - id: nginxApp
       template:
         apiVersion: argoproj.io/v1alpha1
